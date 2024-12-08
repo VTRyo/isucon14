@@ -437,7 +437,7 @@ module Isuride
           end
         end
 
-        retrieved_at = tx.query('SELECT CURRENT_TIMESTAMP(6)', as: :array).first[0]
+        retrieved_at = Time.now.utc
 
         {
           chairs: nearby_chairs,
