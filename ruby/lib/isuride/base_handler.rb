@@ -44,6 +44,12 @@ module Isuride
     helpers Sinatra::Cookies
 
     helpers do
+      # SinatraのjsonメソッドをOj実装としてパッチする
+      def json(obj)
+        content_type :json
+        Oj.dump(obj, mode: :compat)
+      end
+      
       def bind_json(data_class)
         body = Oj.load(request.body.tap(&:rewind).read, symbol_keys: true)
         data_class.new(**data_class.members.map { |key| [key, body[key]] }.to_h)
