@@ -93,6 +93,8 @@ CREATE TABLE rides
   PRIMARY KEY (id)
 )
   COMMENT = 'ライド情報テーブル';
+  CREATE INDEX idx_rides_chair_created ON rides (chair_id, created_at);
+
 
 DROP TABLE IF EXISTS ride_statuses;
 CREATE TABLE ride_statuses
