@@ -111,13 +111,10 @@ module Isuride
     get '/chairs' do
       chairs = db.xquery(<<~SQL, @current_owner.id)
         SELECT id,
-        owner_id,
         name,
-        access_token,
         model,
         is_active,
         created_at,
-        updated_at,
         IFNULL(total_distance, 0) AS total_distance,
         total_distance_updated_at
         FROM chairs
