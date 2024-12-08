@@ -44,7 +44,7 @@ module Isuride
 
     helpers do
       def bind_json(data_class)
-        body = JSON.parse(request.body.tap(&:rewind).read, symbolize_names: true)
+        body = Oj.load(request.body.tap(&:rewind).read, symbol_keys: true)
         data_class.new(**data_class.members.map { |key| [key, body[key]] }.to_h)
       end
 
