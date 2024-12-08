@@ -60,3 +60,47 @@ Count: 5  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (5), isucon[isucon]@localho
 Count: 164  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.0 (1), isucon[isucon]@localhost
   SELECT * FROM rides WHERE chair_id IS NULL ORDER BY created_at LIMIT N
 
+Count: 1  Time=343.44s (343s)  Lock=0.01s (0s)  Rows=1.0 (1), []@[]
+  throttle:       N 'S' warning(s) suppressed.
+
+Count: 1  Time=16.52s (16s)  Lock=0.00s (0s)  Rows=0.0 (0), []@[]
+  throttle:        N 'S' warning(s) suppressed.
+
+Count: 2  Time=0.26s (0s)  Lock=0.00s (0s)  Rows=1.0 (2), isucon[isucon]@localhost
+  SELECT * FROM chair_locations WHERE chair_id = 'S' ORDER BY created_at DESC LIMIT N
+
+Count: 1  Time=0.16s (0s)  Lock=0.00s (0s)  Rows=100.0 (100), isucon[isucon]@localhost
+  SELECT id,
+  owner_id,
+  name,
+  access_token,
+  model,
+  is_active,
+  created_at,
+  updated_at,
+  IFNULL(total_distance, N) AS total_distance,
+  total_distance_updated_at
+  FROM chairs
+  LEFT JOIN (SELECT chair_id,
+  SUM(IFNULL(distance, N)) AS total_distance,
+  MAX(created_at)          AS total_distance_updated_at
+  FROM (SELECT chair_id,
+  created_at,
+  ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+  ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+  FROM chair_locations) tmp
+  GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+  WHERE owner_id = 'S'
+
+Count: 1  Time=0.01s (0s)  Lock=0.00s (0s)  Rows=534.0 (534), isucon[isucon]@localhost
+  SELECT * FROM chairs
+
+Count: 3  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (3), isucon[isucon]@localhost
+  SELECT * FROM rides WHERE user_id = 'S' ORDER BY created_at DESC LIMIT N
+
+Count: 11  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.4 (4), isucon[isucon]@localhost
+  SELECT * FROM coupons WHERE used_by = 'S'
+
+Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=5.5 (11), isucon[isucon]@localhost
+  SELECT * FROM rides WHERE user_id = 'S' ORDER BY created_at DESC
+
