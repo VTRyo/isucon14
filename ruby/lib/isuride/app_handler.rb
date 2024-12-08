@@ -396,7 +396,23 @@ module Isuride
         end
 
       response = db_transaction do |tx|
-        chairs = tx.query('SELECT * FROM chairs')
+        q = <<-SQL
+        SELECT 
+          c.id, 
+          c.name, 
+          c.model, 
+          cl.latitude,
+          cl.longitude
+        FROM chairs c
+        LEFT JOIN chair_locations cl 
+          ON c.id = cl.chair_id
+          AND cl.created_at = (
+            SELECT MAX(cl2.created_at)
+            FROM chair_locations cl2
+            WHERE cl2.chair_id = c.id
+          )
+        SQL
+        chairs = tx.query(q)
 
         nearby_chairs = chairs.filter_map do |chair|
           unless chair.fetch(:is_active)
@@ -419,25 +435,24 @@ module Isuride
           end
 
           # 最新の位置情報を取得
-          chair_location = tx.xquery('SELECT * FROM chair_locations WHERE chair_id = ? ORDER BY created_at DESC LIMIT 1', chair.fetch(:id)).first
-          if chair_location.nil?
+          if chair.fetch(:latitude).nil?
             next
           end
 
-          if calculate_distance(latitude, longitude, chair_location.fetch(:latitude), chair_location.fetch(:longitude)) <= distance
+          if calculate_distance(latitude, longitude, chair.fetch(:latitude), chair.fetch(:longitude)) <= distance
             {
               id: chair.fetch(:id),
               name: chair.fetch(:name),
               model: chair.fetch(:model),
               current_coordinate: {
-                latitude: chair_location.fetch(:latitude),
-                longitude: chair_location.fetch(:longitude),
+                latitude: chair.fetch(:latitude),
+                longitude: chair.fetch(:longitude),
               },
             }
           end
         end
 
-        retrieved_at = tx.query('SELECT CURRENT_TIMESTAMP(6)', as: :array).first[0]
+        retrieved_at = Time.now.utc
 
         {
           chairs: nearby_chairs,
