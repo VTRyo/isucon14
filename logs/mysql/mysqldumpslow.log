@@ -104,3 +104,35 @@ Count: 11  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=0.4 (4), isucon[isucon]@localh
 Count: 2  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=5.5 (11), isucon[isucon]@localhost
   SELECT * FROM rides WHERE user_id = 'S' ORDER BY created_at DESC
 
+Count: 2  Time=100.91s (201s)  Lock=0.00s (0s)  Rows=0.0 (0), []@[]
+  throttle:        N 'S' warning(s) suppressed.
+
+Count: 6  Time=2.71s (16s)  Lock=0.00s (0s)  Rows=21.8 (131), isucon[isucon]@localhost
+  SELECT id,
+  owner_id,
+  name,
+  access_token,
+  model,
+  is_active,
+  created_at,
+  updated_at,
+  IFNULL(total_distance, N) AS total_distance,
+  total_distance_updated_at
+  FROM chairs
+  LEFT JOIN (SELECT chair_id,
+  SUM(IFNULL(distance, N)) AS total_distance,
+  MAX(created_at)          AS total_distance_updated_at
+  FROM (SELECT chair_id,
+  created_at,
+  ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+  ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+  FROM chair_locations) tmp
+  GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+  WHERE owner_id = 'S'
+
+Count: 11  Time=0.01s (0s)  Lock=0.00s (0s)  Rows=522.0 (5742), isucon[isucon]@localhost
+  SELECT * FROM chairs
+
+Count: 3  Time=0.00s (0s)  Lock=0.00s (0s)  Rows=1.0 (3), isucon[isucon]@localhost
+  SELECT COUNT(*) = N FROM (SELECT COUNT(chair_sent_at) = N AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = 'S') GROUP BY ride_id) is_completed WHERE completed = FALSE
+
