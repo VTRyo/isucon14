@@ -79,8 +79,6 @@ module Isuride
         chair_location_id = ULID.generate
         tx.xquery('INSERT INTO chair_locations (id, chair_id, latitude, longitude) VALUES (?, ?, ?, ?)', chair_location_id, @current_chair.id, req.latitude, req.longitude)
 
-        location = tx.xquery('SELECT * FROM chair_locations WHERE id = ?', chair_location_id).first
-
         ride = tx.xquery('SELECT * FROM rides WHERE chair_id = ? ORDER BY updated_at DESC LIMIT 1', @current_chair.id).first
         unless ride.nil?
           status = get_latest_ride_status(tx, ride.fetch(:id))
