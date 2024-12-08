@@ -43,7 +43,16 @@ server {
   }
   location /api/ {
     proxy_set_header Host $host;
-    proxy_pass http://localhost:8080;
+
+    # App1, App2へのロードバランシング
+    proxy_pass http://backend_servers;
+
+    # タイムアウト設定
+    proxy_connect_timeout 5s;
+    proxy_read_timeout 10s;
+    proxy_send_timeout 10s;
+
+    # proxy_pass http://localhost:8080;
   }
 
   location /api/internal/ {
@@ -52,5 +61,10 @@ server {
     deny all;
     proxy_set_header Host $host;
     proxy_pass http://localhost:8080;
+  }
+
+  upstream backend_servers {
+    server 3.113.118.17:8080; # App1
+    server 52.192.7.58:8080; # App2
   }
 }
