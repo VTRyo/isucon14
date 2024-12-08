@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'isuride/base_handler'
-
 module Isuride
   class InternalHandler < BaseHandler
     # このAPIをインスタンス内から一定間隔で叩かせることで、椅子とライドをマッチングさせる
@@ -13,7 +12,7 @@ module Isuride
         halt 204
       end
 
-      10.times do
+      5.times do
         matched = db.query('SELECT * FROM chairs INNER JOIN (SELECT id FROM chairs WHERE is_active = TRUE ORDER BY RAND() LIMIT 1) AS tmp ON chairs.id = tmp.id LIMIT 1').first
         unless matched
           halt 204
