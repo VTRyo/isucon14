@@ -106,5 +106,12 @@ module Isuride
         INITIAL_FARE + metered_fare
       end
     end
+
+    at_exit do
+      if Thread.current[:db]
+        Thread.current[:db].close
+        Thread.current[:db] = nil
+      end
+    end
   end
 end
