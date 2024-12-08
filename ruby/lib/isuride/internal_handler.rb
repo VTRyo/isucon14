@@ -28,27 +28,4 @@ module Isuride
       204
     end
   end
-
-  def toggle_chair_active_status(db, chair_id, is_active)
-    # `is_active` を更新
-    db.xquery('UPDATE chairs SET is_active = ? WHERE id = ?', is_active, chair_id)
-  
-    if is_active
-      # 椅子がアクティブになる場合、Redis キャッシュに追加
-      Redis.current.sadd("available_chairs", chair_id)
-      puts "Chair #{chair_id} has been activated and added to Redis cache."
-    else
-      # 椅子が非アクティブになる場合、Redis キャッシュから削除
-      Redis.current.srem("available_chairs", chair_id)
-      puts "Chair #{chair_id} has been deactivated and removed from Redis cache."
-    end
-  end
-
-  def find_random_available_chair
-    chair_id = Redis.current.srandmember("available_chairs")
-    return nil unless chair_id
- 
-    # 必要に応じてデータベースから詳細情報を取得
-    db.xquery('SELECT * FROM chairs WHERE id = ?', chair_id).first
-  end
 end
