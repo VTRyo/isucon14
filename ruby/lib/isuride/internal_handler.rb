@@ -13,7 +13,7 @@ module Isuride
       end
 
       5.times do
-        matched = db.query('SELECT * FROM chairs INNER JOIN (SELECT id FROM chairs WHERE g = TRUE ORDER BY RAND() LIMIT 1) AS tmp ON chairs.id = tmp.id LIMIT 1').first
+        matched = db.query('SELECT * FROM chairs INNER JOIN (SELECT id FROM chairs WHERE is_active = TRUE ORDER BY RAND() LIMIT 1) AS tmp ON chairs.id = tmp.id LIMIT 1').first
         unless matched
           halt 204
         end
