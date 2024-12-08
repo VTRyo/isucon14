@@ -65,6 +65,7 @@ module Isuride
       req = bind_json(PostChairActivityRequest)
 
       db.xquery('UPDATE chairs SET is_active = ? WHERE id = ?', req.is_active, @current_chair.id)
+      toggle_chair_active_status(db, @current_chair.id, req.is_active) # ここでキャッシュを更新
 
       status(204)
     end
