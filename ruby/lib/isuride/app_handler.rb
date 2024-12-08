@@ -450,49 +450,73 @@ module Isuride
 
     helpers do
       def get_chair_stats(tx, chair_id)
-        rides = tx.xquery('SELECT * FROM rides WHERE chair_id = ? ORDER BY updated_at DESC', chair_id)
-
+        # ridesとride_statusesをJOINして取得
+        rows = tx.xquery(<<~SQL, chair_id)
+          SELECT
+            r.id AS ride_id,
+            r.chair_id,
+            r.evaluation,
+            r.updated_at AS ride_updated_at,
+            s.id AS status_id,
+            s.status,
+            s.created_at AS status_created_at
+          FROM rides r
+          LEFT JOIN ride_statuses s
+            ON r.id = s.ride_id
+          WHERE r.chair_id = ?
+          ORDER BY r.updated_at DESC, s.created_at
+        SQL
+      
+        # 取得したデータからRuby側で整形する
+        ride_map = {}
+        rows.each do |row|
+          ride_id = row.fetch(:ride_id)
+          ride_map[ride_id] ||= {
+            evaluation: row.fetch(:evaluation),
+            statuses: []
+          }
+          if row[:status_id]
+            ride_map[ride_id][:statuses] << {
+              status: row[:status],
+              created_at: row[:status_created_at]
+            }
+          end
+        end
+      
         total_rides_count = 0
         total_evaluation = 0.0
-        rides.each do |ride|
-          ride_statuses = tx.xquery('SELECT * FROM ride_statuses WHERE ride_id = ? ORDER BY created_at', ride.fetch(:id))
-
+      
+        ride_map.each do |ride_id, ride_data|
+          statuses = ride_data[:statuses].sort_by { |s| s[:created_at] }
           arrived_at = nil
           pickup_at = nil
           is_completed = false
-          ride_statuses.each do |status|
-            case status.fetch(:status)
+      
+          statuses.each do |status|
+            case status[:status]
             when 'ARRIVED'
-              arrived_at = status.fetch(:created_at)
+              arrived_at = status[:created_at]
             when 'CARRYING'
-              pickup_at = status.fetch(:created_at)
+              pickup_at = status[:created_at]
             when 'COMPLETED'
               is_completed = true
             end
           end
-          if arrived_at.nil? || pickup_at.nil?
-            next
+      
+          if arrived_at && pickup_at && is_completed
+            total_rides_count += 1
+            total_evaluation += ride_data[:evaluation]
           end
-          unless is_completed
-            next
-          end
-
-          total_rides_count += 1
-          total_evaluation += ride.fetch(:evaluation)
         end
-
-        total_evaluation_avg =
-          if total_rides_count > 0
-            total_evaluation / total_rides_count
-          else
-            0.0
-          end
-
+      
+        total_evaluation_avg = total_rides_count > 0 ? (total_evaluation / total_rides_count) : 0.0
+      
         {
-          total_rides_count:,
-          total_evaluation_avg:,
+          total_rides_count: total_rides_count,
+          total_evaluation_avg: total_evaluation_avg,
         }
       end
+      
 
       def calculate_discounted_fare(tx, user_id, ride, pickup_latitude, pickup_longitude, dest_latitude, dest_longitude)
         discount =
