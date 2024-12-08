@@ -119,6 +119,7 @@ CREATE TABLE ride_statuses
 
 CREATE INDEX idx_ride_statuses_1 ON ride_statuses (ride_id, created_at DESC);
 CREATE INDEX idx_ride_statuses_2 ON ride_statuses (ride_id, `status`);
+CREATE INDEX idx_ride_statuses_3 ON ride_statuses (ride_id, app_sent_at, created_at);
 
 DROP TABLE IF EXISTS owners;
 CREATE TABLE owners
