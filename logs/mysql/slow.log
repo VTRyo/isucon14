@@ -1,19 +1,16 @@
 /usr/sbin/mysqld, Version: 8.0.40-0ubuntu0.24.04.1 ((Ubuntu)). started with:
 Tcp port: 3306  Unix socket: /var/run/mysqld/mysqld.sock
 Time                 Id Command    Argument
-# Time: 2024-12-08T05:54:33.364842Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    15
-# Query_time: 0.161560  Lock_time: 0.000003 Rows_sent: 100  Rows_examined: 179
+# Time: 2024-12-08T06:45:45.022725Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:     9
+# Query_time: 0.203302  Lock_time: 0.000004 Rows_sent: 100  Rows_examined: 179
 use isuride;
-SET timestamp=1733637273;
+SET timestamp=1733640344;
 SELECT id,
-owner_id,
 name,
-access_token,
 model,
 is_active,
 created_at,
-updated_at,
 IFNULL(total_distance, 0) AS total_distance,
 total_distance_updated_at
 FROM chairs
@@ -27,208 +24,426 @@ LEFT JOIN (SELECT chair_id,
                   FROM chair_locations) tmp
             GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
 WHERE owner_id = '01JDFEDF00B09BNMV8MP0RB34G';
-# Time: 2024-12-08T05:54:35.039464Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    12
-# Query_time: 0.018875  Lock_time: 0.000004 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637275;
+# Time: 2024-12-08T06:45:46.145455Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:     8
+# Query_time: 0.001402  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640346;
 SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:35.885069Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    35
-# Query_time: 0.008571  Lock_time: 0.000001 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637275;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:35.992119Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    20
-# Query_time: 0.001397  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637275;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.032289Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    63
-# Query_time: 0.001349  Lock_time: 0.000004 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.042672Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    62
-# Query_time: 0.005563  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.068762Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    53
-# Query_time: 0.005647  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.143477Z
+# Time: 2024-12-08T06:45:47.630747Z
 # User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    25
-# Query_time: 0.001443  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
+# Query_time: 0.010623  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
 SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.147637Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    24
-# Query_time: 0.001335  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:54:36.248235Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    33
-# Query_time: 0.001358  Lock_time: 0.000003 Rows_sent: 520  Rows_examined: 520
-SET timestamp=1733637276;
-SELECT * FROM chairs;
-# Time: 2024-12-08T05:55:33.364928Z
-# User@Host: [] @  []  Id:    30
-# Query_time: 192.241022  Lock_time: 0.002229 Rows_sent: 1  Rows_examined: 1
-SET timestamp=1733637333;
-throttle:        311 'index not used' warning(s) suppressed.;
-# Time: 2024-12-08T05:55:33.604533Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    77
-# Query_time: 0.000511  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
-SET timestamp=1733637333;
-SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJDAX31WSY6FY19HRPECH44') GROUP BY ride_id) is_completed WHERE completed = FALSE;
-# Time: 2024-12-08T05:55:33.633006Z
+# Time: 2024-12-08T06:45:47.638952Z
 # User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    50
-# Query_time: 0.008234  Lock_time: 0.000002 Rows_sent: 537  Rows_examined: 537
-SET timestamp=1733637333;
+# Query_time: 0.005002  Lock_time: 0.000001 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
 SELECT * FROM chairs;
-# Time: 2024-12-08T05:55:34.261097Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    27
-# Query_time: 2.128549  Lock_time: 0.000003 Rows_sent: 7  Rows_examined: 14
-SET timestamp=1733637332;
-SELECT id,
-owner_id,
-name,
-access_token,
-model,
-is_active,
-created_at,
-updated_at,
-IFNULL(total_distance, 0) AS total_distance,
-total_distance_updated_at
-FROM chairs
-LEFT JOIN (SELECT chair_id,
-                   SUM(IFNULL(distance, 0)) AS total_distance,
-                   MAX(created_at)          AS total_distance_updated_at
-            FROM (SELECT chair_id,
-                         created_at,
-                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
-                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
-                  FROM chair_locations) tmp
-            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = '01JEJDAX2P4J2507ZF8NNCJ55V';
-# Time: 2024-12-08T05:55:34.280645Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    45
-# Query_time: 2.153677  Lock_time: 0.000003 Rows_sent: 8  Rows_examined: 16
-SET timestamp=1733637332;
-SELECT id,
-owner_id,
-name,
-access_token,
-model,
-is_active,
-created_at,
-updated_at,
-IFNULL(total_distance, 0) AS total_distance,
-total_distance_updated_at
-FROM chairs
-LEFT JOIN (SELECT chair_id,
-                   SUM(IFNULL(distance, 0)) AS total_distance,
-                   MAX(created_at)          AS total_distance_updated_at
-            FROM (SELECT chair_id,
-                         created_at,
-                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
-                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
-                  FROM chair_locations) tmp
-            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = '01JEJDAWY8Q0H0HYCB02N0BZ55';
-# Time: 2024-12-08T05:55:34.301936Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    10
-# Query_time: 2.178551  Lock_time: 0.000002 Rows_sent: 7  Rows_examined: 14
-SET timestamp=1733637332;
-SELECT id,
-owner_id,
-name,
-access_token,
-model,
-is_active,
-created_at,
-updated_at,
-IFNULL(total_distance, 0) AS total_distance,
-total_distance_updated_at
-FROM chairs
-LEFT JOIN (SELECT chair_id,
-                   SUM(IFNULL(distance, 0)) AS total_distance,
-                   MAX(created_at)          AS total_distance_updated_at
-            FROM (SELECT chair_id,
-                         created_at,
-                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
-                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
-                  FROM chair_locations) tmp
-            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = '01JEJDAX4MZ8A9VP48Y4506K16';
-# Time: 2024-12-08T05:55:34.302576Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    32
-# Query_time: 2.177392  Lock_time: 0.000002 Rows_sent: 7  Rows_examined: 14
-SET timestamp=1733637332;
-SELECT id,
-owner_id,
-name,
-access_token,
-model,
-is_active,
-created_at,
-updated_at,
-IFNULL(total_distance, 0) AS total_distance,
-total_distance_updated_at
-FROM chairs
-LEFT JOIN (SELECT chair_id,
-                   SUM(IFNULL(distance, 0)) AS total_distance,
-                   MAX(created_at)          AS total_distance_updated_at
-            FROM (SELECT chair_id,
-                         created_at,
-                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
-                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
-                  FROM chair_locations) tmp
-            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = '01JEJDAWRVH1SSRXVVVHDJ1C5W';
-# Time: 2024-12-08T05:55:34.319974Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    70
-# Query_time: 2.179683  Lock_time: 0.000002 Rows_sent: 8  Rows_examined: 16
-SET timestamp=1733637332;
-SELECT id,
-owner_id,
-name,
-access_token,
-model,
-is_active,
-created_at,
-updated_at,
-IFNULL(total_distance, 0) AS total_distance,
-total_distance_updated_at
-FROM chairs
-LEFT JOIN (SELECT chair_id,
-                   SUM(IFNULL(distance, 0)) AS total_distance,
-                   MAX(created_at)          AS total_distance_updated_at
-            FROM (SELECT chair_id,
-                         created_at,
-                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
-                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
-                  FROM chair_locations) tmp
-            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = '01JEJDAX0M26HYQFSY454ES0NW';
-# Time: 2024-12-08T05:55:34.322817Z
+# Time: 2024-12-08T06:45:47.641385Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    26
+# Query_time: 0.005422  Lock_time: 0.000001 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:45:47.654393Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    31
+# Query_time: 0.004167  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:45:47.662722Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    48
+# Query_time: 0.001364  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:45:47.672525Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    34
+# Query_time: 0.001185  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:45:47.706375Z
 # User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    43
-# Query_time: 0.000340  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
-SET timestamp=1733637334;
-SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJDCJSFX1KN7HBETZPN6JTA') GROUP BY ride_id) is_completed WHERE completed = FALSE;
-# Time: 2024-12-08T05:55:34.874178Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:     9
-# Query_time: 0.000349  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
-SET timestamp=1733637334;
-SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJDAX1Y2Y6GQG7NXY91D9KA') GROUP BY ride_id) is_completed WHERE completed = FALSE;
-# Time: 2024-12-08T05:55:34.874861Z
-# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:     9
-# Query_time: 0.000260  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
-SET timestamp=1733637334;
-SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJDBXMAH2N64FTGD4G1XJ24') GROUP BY ride_id) is_completed WHERE completed = FALSE;
-# Time: 2024-12-08T05:56:34.008681Z
-# User@Host: [] @  []  Id:    59
-# Query_time: 0.004929  Lock_time: 0.000025 Rows_sent: 0  Rows_examined: 0
-SET timestamp=1733637394;
-throttle:         15 'index not used' warning(s) suppressed.;
+# Query_time: 0.001270  Lock_time: 0.000001 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:45:47.709569Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    38
+# Query_time: 0.006869  Lock_time: 0.000002 Rows_sent: 520  Rows_examined: 520
+SET timestamp=1733640347;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:46:45.023485Z
+# User@Host: [] @  []  Id:    35
+# Query_time: 210.334837  Lock_time: 0.000620 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640405;
+throttle:        313 'index not used' warning(s) suppressed.;
+# Time: 2024-12-08T06:46:45.398295Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    25
+# Query_time: 0.000345  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640405;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG9KHAHSXD3HKAX2CA0HHQ') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:45.950697Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    39
+# Query_time: 0.000277  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640405;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG98ZWF4Z2DM3HRCJFKFXZ') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:46.509373Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    57
+# Query_time: 0.000258  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640406;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGA8MBT95ZESNZ8014Z9KS') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:47.069729Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    67
+# Query_time: 0.000348  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640407;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGA548ECV664XQPZQYHQRC') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:47.070434Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    67
+# Query_time: 0.000268  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640407;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG8MGX1SNVRQG1YQ7Q77P1') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:47.626183Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    10
+# Query_time: 0.000354  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640407;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG9KHAHSXD3HKAX2CA0HHQ') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:47.626851Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    10
+# Query_time: 0.000271  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640407;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG8MSHDMB7BDQZ4BGAEBGA') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:48.186560Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    25
+# Query_time: 0.000338  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640408;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG8MGKPEZ0768JPMNT0QN4') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:48.752287Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    36
+# Query_time: 0.000503  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640408;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG8MSWZQQBGSAWBJJZBSV8') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:46:48.753103Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    36
+# Query_time: 0.000295  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640408;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJG8MPSCMN7JDTK0B6A1W2E') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:47:45.401739Z
+# User@Host: [] @  []  Id:    35
+# Query_time: 125.625672  Lock_time: 0.001310 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1733640465;
+throttle:        234 'index not used' warning(s) suppressed.;
+# Time: 2024-12-08T06:47:45.633426Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    41
+# Query_time: 2.622328  Lock_time: 0.000002 Rows_sent: 5  Rows_examined: 10
+SET timestamp=1733640463;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGB3T0TTE27BX9ADX7XF30';
+# Time: 2024-12-08T06:47:45.712415Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    88
+# Query_time: 2.699244  Lock_time: 0.000002 Rows_sent: 5  Rows_examined: 10
+SET timestamp=1733640463;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGB3QYDJAKE4CPDE9RJE57';
+# Time: 2024-12-08T06:47:45.717821Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    23
+# Query_time: 2.721031  Lock_time: 0.000002 Rows_sent: 6  Rows_examined: 12
+SET timestamp=1733640462;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGB3K233SHBM31Q94ZMAK7';
+# Time: 2024-12-08T06:47:45.815776Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    86
+# Query_time: 2.809732  Lock_time: 0.000001 Rows_sent: 6  Rows_examined: 12
+SET timestamp=1733640463;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGB3N8AWYZGBZYW784JYE9';
+# Time: 2024-12-08T06:47:45.886170Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    83
+# Query_time: 0.001318  Lock_time: 0.000001 Rows_sent: 528  Rows_examined: 528
+SET timestamp=1733640465;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:47:45.886390Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 0.007589  Lock_time: 0.000002 Rows_sent: 528  Rows_examined: 528
+SET timestamp=1733640465;
+SELECT * FROM chairs;
+# Time: 2024-12-08T06:47:45.930181Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    57
+# Query_time: 0.000574  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640465;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGB3MEKHJ7560R299JWMX2') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:47:46.542162Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    46
+# Query_time: 0.000589  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640466;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGB3VE1K7QTJY446M5RVCB') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:47:47.619991Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    51
+# Query_time: 0.001559  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640467;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGBSPVZV7HWHR134ZVCEY6') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:47:47.628361Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    51
+# Query_time: 0.002703  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640467;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGB3WKDB48DQ0DE1VCQXGC') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:48:45.648011Z
+# User@Host: [] @  []  Id:    52
+# Query_time: 87.503392  Lock_time: 0.000294 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640525;
+throttle:        143 'index not used' warning(s) suppressed.;
+# Time: 2024-12-08T06:48:45.771451Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    30
+# Query_time: 0.000300  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640525;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2TB9689QD92KPHP4BGJ') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:48:46.604412Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    40
+# Query_time: 0.000404  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640526;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2WRRRFWFMFX53WFB3YB') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:48:47.211266Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    94
+# Query_time: 1.096927  Lock_time: 0.000002 Rows_sent: 4  Rows_examined: 8
+SET timestamp=1733640526;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGE2XW8MBDMQJAMV87GN6F';
+# Time: 2024-12-08T06:48:47.216770Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 1.099883  Lock_time: 0.000002 Rows_sent: 4  Rows_examined: 8
+SET timestamp=1733640526;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGE2SBY0AADEMZ10YQCY2E';
+# Time: 2024-12-08T06:48:47.300737Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    70
+# Query_time: 0.000361  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640527;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2YYHKS3DZN6Y3F9Y0MK') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:48:47.307199Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    46
+# Query_time: 1.187190  Lock_time: 0.000002 Rows_sent: 4  Rows_examined: 8
+SET timestamp=1733640526;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGE2VHF42PG7M5JW09DGKT';
+# Time: 2024-12-08T06:48:47.308831Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    25
+# Query_time: 1.184591  Lock_time: 0.000002 Rows_sent: 4  Rows_examined: 8
+SET timestamp=1733640526;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGE2MSGYEP6N50X1QK9X2H';
+# Time: 2024-12-08T06:48:47.310031Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    49
+# Query_time: 1.189460  Lock_time: 0.000002 Rows_sent: 4  Rows_examined: 8
+SET timestamp=1733640526;
+SELECT id,
+name,
+model,
+is_active,
+created_at,
+IFNULL(total_distance, 0) AS total_distance,
+total_distance_updated_at
+FROM chairs
+LEFT JOIN (SELECT chair_id,
+                   SUM(IFNULL(distance, 0)) AS total_distance,
+                   MAX(created_at)          AS total_distance_updated_at
+            FROM (SELECT chair_id,
+                         created_at,
+                         ABS(latitude - LAG(latitude) OVER (PARTITION BY chair_id ORDER BY created_at)) +
+                         ABS(longitude - LAG(longitude) OVER (PARTITION BY chair_id ORDER BY created_at)) AS distance
+                  FROM chair_locations) tmp
+            GROUP BY chair_id) distance_table ON distance_table.chair_id = chairs.id
+WHERE owner_id = '01JEJGE2Q3BNFS73PNAAPMHYCH';
+# Time: 2024-12-08T06:48:47.870349Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    81
+# Query_time: 0.000374  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640527;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2TB9689QD92KPHP4BGJ') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:48:47.873820Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    81
+# Query_time: 0.000304  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640527;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2NWTR91A0XRFFQY7V4B') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:45.788061Z
+# User@Host: [] @  []  Id:    97
+# Query_time: 201.444785  Lock_time: 0.001102 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640585;
+throttle:        306 'index not used' warning(s) suppressed.;
+# Time: 2024-12-08T06:49:45.920666Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:   118
+# Query_time: 0.000356  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640585;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2NWTR91A0XRFFQY7V4B') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:46.484549Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 0.000372  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640586;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2QVGPRXJ51H4MR8FRD1') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:46.485170Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 0.000217  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640586;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGFA9ZEDZF63Z449MVM6CG') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:47.036670Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    26
+# Query_time: 0.000331  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640587;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2RG1YBWG0HR7M10V8G6') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:47.590369Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    20
+# Query_time: 0.000352  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640587;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGF6SAQE6Q3FDVC6NB59DH') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:47.591067Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    20
+# Query_time: 0.000292  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640587;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGERQGAM9CNVK0F65M4W9R') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:48.146833Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 0.000399  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1733640588;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2NWTR91A0XRFFQY7V4B') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:48.147565Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    69
+# Query_time: 0.000284  Lock_time: 0.000002 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640588;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGE2T13XN57YD1A4CCHSW0') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:48.696456Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:    85
+# Query_time: 0.000312  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640588;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGF3933R0JNR0CW8436SBP') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:49:49.241828Z
+# User@Host: isucon[isucon] @ localhost [127.0.0.1]  Id:   100
+# Query_time: 0.000310  Lock_time: 0.000001 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1733640589;
+SELECT COUNT(*) = 0 FROM (SELECT COUNT(chair_sent_at) = 6 AS completed FROM ride_statuses WHERE ride_id IN (SELECT id FROM rides WHERE chair_id = '01JEJGEW7YQFYG2HY052ST0KV3') GROUP BY ride_id) is_completed WHERE completed = FALSE;
+# Time: 2024-12-08T06:50:46.098516Z
+# User@Host: [] @  []  Id:   116
+# Query_time: 0.003614  Lock_time: 0.000015 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1733640646;
+throttle:         12 'index not used' warning(s) suppressed.;
