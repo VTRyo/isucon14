@@ -5,6 +5,7 @@ require 'mysql2-cs-bind'
 require 'sinatra/base'
 require 'sinatra/cookies'
 require 'sinatra/json'
+require 'oj'
 
 # mysql2-cs-bind gem にマイクロ秒のサポートを入れる
 module Mysql2CsBindPatch
@@ -43,8 +44,14 @@ module Isuride
     helpers Sinatra::Cookies
 
     helpers do
+      # SinatraのjsonメソッドをOj実装としてパッチする
+      def json(obj)
+        content_type :json
+        Oj.dump(obj, mode: :compat)
+      end
+      
       def bind_json(data_class)
-        body = JSON.parse(request.body.tap(&:rewind).read, symbolize_names: true)
+        body = Oj.load(request.body.tap(&:rewind).read, symbol_keys: true)
         data_class.new(**data_class.members.map { |key| [key, body[key]] }.to_h)
       end
 
