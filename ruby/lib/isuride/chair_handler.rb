@@ -105,7 +105,7 @@ module Isuride
     get '/notification' do
       ride = db.xquery('SELECT * FROM rides WHERE chair_id = ? ORDER BY updated_at DESC LIMIT 1', @current_chair.id).first
       unless ride
-        halt json(data: nil, retry_after_ms: 500)
+        halt json(data: nil, retry_after_ms: 1000)
         return
       end
 
@@ -140,7 +140,7 @@ module Isuride
           },
           status:,
         },
-        retry_after_ms: 500,
+        retry_after_ms: 1000,
       }
 
       json(response)
