@@ -153,12 +153,12 @@ module Isuride
       ride_id = params[:ride_id]
       req = bind_json(PostChairRidesRideIDStatusRequest)
 
+      ride = db.xquery('SELECT * FROM rides WHERE id = ? FOR UPDATE', ride_id).first
+      if ride.fetch(:chair_id) != @current_chair.id
+        raise HttpError.new(400, 'not assigned to this ride')
+      end
+      
       db_transaction do |tx|
-        ride = tx.xquery('SELECT * FROM rides WHERE id = ? FOR UPDATE', ride_id).first
-        if ride.fetch(:chair_id) != @current_chair.id
-          raise HttpError.new(400, 'not assigned to this ride')
-        end
-
         case req.status
 	# Acknowledge the ride
         when 'ENROUTE'
