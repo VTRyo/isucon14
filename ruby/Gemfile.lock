@@ -11,6 +11,10 @@ GEM
     mysql2-cs-bind (0.1.1)
       mysql2
     nio4r (2.7.4)
+    oj (3.16.7)
+      bigdecimal (>= 3.0)
+      ostruct (>= 0.2)
+    ostruct (0.6.1)
     puma (6.5.0)
       nio4r (~> 2.0)
     rack (3.1.8)
@@ -44,6 +48,7 @@ DEPENDENCIES
   bigdecimal
   mysql2
   mysql2-cs-bind
+  oj
   puma
   sinatra
   sinatra-contrib
