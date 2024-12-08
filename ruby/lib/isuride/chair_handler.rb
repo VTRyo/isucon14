@@ -80,6 +80,7 @@ module Isuride
         created_at = Time.now
         tx.xquery('INSERT INTO chair_locations (id, chair_id, latitude, longitude, created_at) VALUES (?, ?, ?, ?, ?)', chair_location_id, @current_chair.id, req.latitude, req.longitude, created_at)
 
+        location = { created_at: created_at }
         ride = tx.xquery('SELECT * FROM rides WHERE chair_id = ? ORDER BY updated_at DESC LIMIT 1', @current_chair.id).first
         unless ride.nil?
           status = get_latest_ride_status(tx, ride.fetch(:id))
@@ -94,7 +95,7 @@ module Isuride
           end
         end
 
-        { recorded_at: time_msec(created_at) }
+        { recorded_at: time_msec(location.fetch(:created_at)) }
       end
 
       json(response)
