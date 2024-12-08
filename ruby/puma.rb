@@ -4,11 +4,11 @@
 bind "tcp://0.0.0.0:8080"
 
 # ワーカー数 (プロセス数)
-workers ENV.fetch("PUMA_WORKERS") { 2 } # 初期は8
+workers ENV.fetch("PUMA_WORKERS") { 8 } # 初期は8
 
 # スレッド数 (最小: 0, 最大: 2)
 threads_min = ENV.fetch("PUMA_MIN_THREADS") { 0 }
-threads_max = ENV.fetch("PUMA_MAX_THREADS") { 2 } # 初期は8
+threads_max = ENV.fetch("PUMA_MAX_THREADS") { 16 } # 初期は8
 threads threads_min, threads_max
 
 # 環境設定
