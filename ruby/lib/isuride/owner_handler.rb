@@ -79,14 +79,14 @@ module Isuride
           Time.at(parsed / 1000, parsed % 1000, :millisecond, in: 'UTC')
         end
 
-      chairs = db.xquery('SELECT * FROM chairs WHERE owner_id = ?', @current_owner.id)
+      tx = db
+      chairs = tx.xquery('SELECT * FROM chairs WHERE owner_id = ?', @current_owner.id)
 
       res = { total_sales: 0, chairs: [] }
 
       model_sales_by_model = Hash.new { |h, k| h[k] = 0 }
-      # TODO: N+1
       chairs.each do |chair|
-        rides = db.xquery("SELECT rides.* FROM rides JOIN ride_statuses ON rides.id = ride_statuses.ride_id WHERE chair_id = ? AND status = 'COMPLETED' AND updated_at BETWEEN ? AND ? + INTERVAL 999 MICROSECOND", chair.fetch(:id), since, until_).to_a
+        rides = tx.xquery("SELECT rides.* FROM rides JOIN ride_statuses ON rides.id = ride_statuses.ride_id WHERE chair_id = ? AND status = 'COMPLETED' AND updated_at BETWEEN ? AND ? + INTERVAL 999 MICROSECOND", chair.fetch(:id), since, until_).to_a
 
         sales = sum_sales(rides)
         res[:total_sales] += sales
@@ -100,7 +100,7 @@ module Isuride
         model_sales_by_model[chair.fetch(:model)] += sales
       end
 
-      res.merge(
+      res = res.merge(
         models: model_sales_by_model.map { |model, sales| { model:, sales: } },
       )
 
